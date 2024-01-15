@@ -18,8 +18,18 @@ n <- 7
 m <- 10
 rep_comuna_incompleta <- frepcomgen(n,m)
 
+
+
 # b).
 # completare tabel rep. comuna
+
+c <- which(is.na(rep_comuna_incompleta),arr.ind=TRUE)
+
+sum(rep_comuna_incompleta[2,])
+for(i in 1:n){
+  rep_comuna_incompleta[c[i,1],c[i,2]] <- rep_comuna_incompleta[c[i,1],m+2] - sum()
+
+}
 
 fcomplrepcom()
 

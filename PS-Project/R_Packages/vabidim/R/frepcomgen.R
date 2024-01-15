@@ -3,7 +3,13 @@ frepcomgen <- function(n,m) {
   # Crearea unui tabel gol cu n+2 randuri și m+2 coloane
   # Se extinde deoarece avem nevoie si de prob. v.a. X si Y
   tabel <- matrix(NA, nrow = n+2, ncol = m+2)
+
+
+  tabel[1,1] <- -1
+  tabel [1,m+2] <- -1
+  tabel [n+2,1] <- -1
   tabel[n+2,m+2] <- 1
+
   max_nr <- max(n,m)
 
   # Populare valori pentru v.a X
@@ -44,26 +50,44 @@ frepcomgen <- function(n,m) {
   {
     tabel[n+2,j] <- sum(tabel[2:(n+1),j])
   }
+
   # Generare spatii goale
 
     indici_i <- sample(2:(n + 2), size = min(m,n), replace = FALSE)
     indici_j <- sample(2:(m + 2), size = min(m,n), replace = FALSE)
+
+
 
     for (i in 1:min(m,n))
     {
       repeat{
       x <- sample(indici_i,1)
       y <- sample(indici_j,1)
+
       # checker sa nu fie t[n+2][m+2] sau t[1][1]
       if((x != n+2 || y !=m+2) && (x != 1 && y!= 1))
           break
       }
 
+      #testam cazul in care indicii_i si indici_j raman cu un singur element
+
+      if(i==min(n,m)){
+        x= indici_i[1]
+        y= indici_j[1]
+      }
+
+
+      print(cat("X=",x))
+      print(cat("Y=",y))
+
       # marcam celula goala
       tabel[x,y] <- NA
+
       # eliniminam indicii folositi
-      indici_i <- indici_i[!indici_i == as.numeric(x)]
-      indici_j <- indici_j[!indici_j == as.numeric(y)]
+      indici_i <- setdiff(indici_i, x)
+      indici_j <- setdiff(indici_j, y)
+
+
     }
 
   return(tabel)
