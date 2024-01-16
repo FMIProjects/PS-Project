@@ -57,8 +57,6 @@ frepcomgen <- function(n,m) {
     indici_i <- sample(2:(n + 2), size = min(m,n), replace = FALSE)
     indici_j <- sample(2:(m + 2), size = min(m,n), replace = FALSE)
 
-
-
     for (i in 1:min(m,n))
     {
       repeat{
@@ -79,11 +77,7 @@ frepcomgen <- function(n,m) {
         # daca se intampla ca in cei 2 vectori sa ramana indicii n+2 si m+2 ignoram cazul
         if(x == n+2 && y == m+2)
           break;
-
       }
-
-
-
 
       # marcam celula goala
       tabel[x,y] <- NA
@@ -91,7 +85,6 @@ frepcomgen <- function(n,m) {
       # eliniminam indicii folositi
       indici_i <- setdiff(indici_i, x)
       indici_j <- setdiff(indici_j, y)
-
 
     }
 
