@@ -4,10 +4,11 @@ frepcomgen <- function(n,m) {
   # Se extinde deoarece avem nevoie si de prob. v.a. X si Y
   tabel <- matrix(NA, nrow = n+2, ncol = m+2)
 
-
+  #restul colturilor se fac -1 pentru a nu le lasa NA
   tabel[1,1] <- -1
   tabel [1,m+2] <- -1
   tabel [n+2,1] <- -1
+  # coltul din dreapta jos este 1 reprezentand probabilitatea
   tabel[n+2,m+2] <- 1
 
   max_nr <- max(n,m)

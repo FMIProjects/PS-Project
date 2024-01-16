@@ -24,6 +24,13 @@ rep_comuna_incompleta <- frepcomgen(n,m)
 
 rep_comuna_rezolvata <- fcomplrepcom(n,m,rep_comuna_incompleta)
 
+# c).
+# obtinerea repartititei marginale
+ marginale <- frepmarginal(n,m,rep_comuna_rezolvata)
+ marginalaX <-  marginale[1:2,]
+ marginalaY <-  marginale[3:4,]
+
+
 
 
 
