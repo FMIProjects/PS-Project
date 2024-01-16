@@ -14,24 +14,17 @@ options(scipen = 999)
 # a).
 # generare tabel rep. comuna a v.a. X si Y incompleta
 
-n <- 7
-m <- 10
+n <- 3
+m <- 3
 rep_comuna_incompleta <- frepcomgen(n,m)
+
 
 
 
 # b).
 # completare tabel rep. comuna
 
-c <- which(is.na(rep_comuna_incompleta),arr.ind=TRUE)
-
-sum(rep_comuna_incompleta[2,])
-for(i in 1:n){
-  rep_comuna_incompleta[c[i,1],c[i,2]] <- rep_comuna_incompleta[c[i,1],m+2] - sum()
-
-}
-
-fcomplrepcom()
+rep_comuna_rezolvata <- fcomplrepcom(n,m,rep_comuna_incompleta)
 
 
 

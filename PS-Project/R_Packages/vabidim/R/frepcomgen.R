@@ -74,11 +74,15 @@ frepcomgen <- function(n,m) {
       if(i==min(n,m)){
         x= indici_i[1]
         y= indici_j[1]
+
+        # daca se intampla ca in cei 2 vectori sa ramana indicii n+2 si m+2 ignoram cazul
+        if(x == n+2 && y == m+2)
+          break;
+
       }
 
 
-      print(cat("X=",x))
-      print(cat("Y=",y))
+
 
       # marcam celula goala
       tabel[x,y] <- NA
