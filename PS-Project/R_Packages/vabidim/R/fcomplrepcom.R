@@ -21,7 +21,7 @@ fcomplrepcom <- function(n,m,tabel) {
     sumPi <- sum(tabel[i, 2:(m+1)],na.rm=TRUE)
 
     #obtinem coordonatele celulei libere
-    coord_pi <- which(is.na(tabel[i, 2:(m+1)]))
+    coord_pi <- which(is.na(tabel[i, 2:(m+1)])) +1
 
     # completam celula
     tabel[i, coord_pi] = tabel[i,m+2] - sumPi

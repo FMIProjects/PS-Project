@@ -19,12 +19,11 @@ m <- 3
 rep_comuna_incompleta <- frepcomgen(n,m)
 
 
-
-
 # b).
 # completare tabel rep. comuna
 
 rep_comuna_rezolvata <- fcomplrepcom(n,m,rep_comuna_incompleta)
+
 
 
 
