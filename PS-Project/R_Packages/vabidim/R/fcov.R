@@ -1,0 +1,1 @@
+# covarianta (sterge asta Razvan)

@@ -1,12 +1,11 @@
 \name{fPcomun}
 \alias{fPcomun}
 \title{fPcomun}
-\description{
-\usage{fPcomun()}
+\description{}
+\usage{fPcomun}
 
-\arguments{
-}
-}
+\arguments{}
+
 \details{}
 \value{}
-}
+

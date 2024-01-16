@@ -14,8 +14,8 @@ options(scipen = 999)
 # a).
 # generare tabel rep. comuna a v.a. X si Y incompleta
 
-n <- 6
-m <- 6
+n <- 2
+m <- 2
 rep_comuna_incompleta <- frepcomgen(n,m)
 
 
@@ -27,9 +27,10 @@ rep_comuna_rezolvata <- fcomplrepcom(rep_comuna_incompleta)
 # c).
 # obtinerea repartititei marginale
  marginale <- frepmarginal(rep_comuna_rezolvata)
- marginalaX <-  marginale[1]
- marginalaY <-  marginale[2]
+ marginalaX <- matrix(unlist(marginale[1]), nrow = 2)
+ marginalaY <- matrix(unlist(marginale[2]), nrow = 2)
 
 
+# d).
 
 

@@ -10,4 +10,4 @@
 }
 \details{}
 \value{Tabel repartitia comuna completa.}
-}
+

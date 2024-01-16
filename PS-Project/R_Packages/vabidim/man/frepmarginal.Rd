@@ -10,4 +10,3 @@
 }
 \details{}
 \value{Repartițiile marginale pentru X și Y.}
-}

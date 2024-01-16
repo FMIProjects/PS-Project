@@ -1,12 +1,11 @@
 \name{fPcond}
 \alias{fPcond}
 \title{fPcond}
-\description{
-\usage{fPcond()}
+\description{}
+\usage{fPcond}
 
-\arguments{
-}
-}
+\arguments{}
+
 \details{}
 \value{}
-}
+

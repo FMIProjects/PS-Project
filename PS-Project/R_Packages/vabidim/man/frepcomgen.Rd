@@ -11,4 +11,3 @@ Generează un tabel cu repartiţia comună a v.a. X şi Y incompletă, dar ȋntr
 }
 \details{}
 \value{Tabel cu repartiţia comună a v.a. X şi Y incompletă.}
-}
