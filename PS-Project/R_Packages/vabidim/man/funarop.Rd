@@ -6,7 +6,7 @@
 \usage{funarop(X,op,nr)}
 
 \arguments{
-  \item{X}{Functia de masa a v.a X.}
+  \item{X}{Functia de repartitie a v.a X.}
   \item{op}{"+","-","*","/","^"}
 }
 \details{}

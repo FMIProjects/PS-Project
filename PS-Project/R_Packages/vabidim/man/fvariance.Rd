@@ -6,7 +6,7 @@
 \usage{frepmarginal(X)}
 
 \arguments{
-  \item{X}{Functia de masa a v.a X.}
+  \item{X}{Functia de repartitie a v.a X.}
 }
 \details{}
 \value{Varianta v.a. X.}

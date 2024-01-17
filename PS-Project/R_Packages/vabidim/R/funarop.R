@@ -1,4 +1,4 @@
-funarop <- function(X,op,nr)
+funarop <- function(X,nr,op)
 {
   if(op == "+")
   {

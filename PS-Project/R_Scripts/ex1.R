@@ -30,7 +30,16 @@ rep_comuna_rezolvata <- fcomplrepcom(rep_comuna_incompleta)
  marginalaX <- matrix(unlist(marginale[1]), nrow = 2)
  marginalaY <- matrix(unlist(marginale[2]), nrow = 2)
 
-
 # d).
 
+  marginalaX
+  marginalaY
+
+
+
+  XY <- fvaop(marginalaX,marginalaY,'*')
+  XY
+  sum(XY[2,])
+
+  which(marginalaX[1,] == 1)
 
