@@ -33,7 +33,10 @@ rep_comuna_rezolvata <- fcomplrepcom(rep_comuna_incompleta)
  X
  Y
 # d).
-  XY <- fvaop(X,Y,'*')
+  XY <- fvaop(X,Y,rep_comuna_rezolvata,'*')
   XY
+
+  fcov(X,Y,rep_comuna_rezolvata)
+  fpropcov(X,Y,rep_comuna_rezolvata,1,0,0,1)
 
 

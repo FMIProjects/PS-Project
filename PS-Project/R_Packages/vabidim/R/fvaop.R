@@ -1,5 +1,8 @@
-fvaop <- function(X,Y,op){
+fvaop <- function(X,Y,repartitieComuna,op){
 
+  # nx numarul de linii din repCom ny numarul de coloane din repCom
+  nX <- length(X[1,])
+  nY <- length(Y[1,])
 
   # o sa construim pe parcurs valorile si probabilitatile pentru noua v.a.
   valXY <- vector("numeric" , length =0)
@@ -9,8 +12,6 @@ fvaop <- function(X,Y,op){
   valX <- X[1,]
   valY <-  Y[1,]
 
-  probX <- X[2,]
-  probY <- Y[2,]
 
   if(op != '+' && op != '-' && op!= '*')
     return(-1)
@@ -19,7 +20,7 @@ fvaop <- function(X,Y,op){
   for(i in  valX){
 
     # obtinem probabilitatea asociata valorii curente a lui X
-    currentProbX <- probX[which(valX==i)]
+    indexProbX <- which(valX==i)
 
     # concatenam noile valori la vectorul de valori in functie de operatie
 
@@ -34,9 +35,12 @@ fvaop <- function(X,Y,op){
       valXY <- c(valXY,(valY*i))
     }
 
+    # din repartitia comuna obtinem probabilitatile de pe randul cu X=i
+    # grija la indici
+    probX <-repartitieComuna[indexProbX+1,2:(nY+1)]
 
     # concatenam noile probabilitati
-    probXY <- c(probXY, (currentProbX * probY) )
+    probXY <- c(probXY, probX  )
 
 
   }

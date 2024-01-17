@@ -5,7 +5,7 @@ fvariance <- function(X)
     return(0)
 
   medie_x <- fexpectedvalue(X)
-  medie_x_2 <- fexpectedvalue(funarop(X,"^",2))
+  medie_x_2 <- fexpectedvalue(funarop(X,2,"^"))
 
   varianta <- medie_x_2 - (medie_x^2)
 

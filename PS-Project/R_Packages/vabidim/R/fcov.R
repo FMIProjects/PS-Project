@@ -1,7 +1,7 @@
 
-fcov <-  function(X,Y){
+fcov <-  function(X,Y,repCom){
 
-  XY <- fvaop(X,Y,'*')
+  XY <- fvaop(X,Y,repCom,'*')
 
   return(fexpectedvalue(XY) - fexpectedvalue(X)*fexpectedvalue(Y))
 
