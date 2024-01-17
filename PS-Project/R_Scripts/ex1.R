@@ -30,13 +30,16 @@ rep_comuna_rezolvata <- fcomplrepcom(rep_comuna_incompleta)
  X <- matrix(unlist(marginale[1]), nrow = 2)
  Y <- matrix(unlist(marginale[2]), nrow = 2)
 
- X
- Y
 # d).
-  XY <- fvaop(X,Y,rep_comuna_rezolvata,'*')
-  XY
+# determinarea covalentei cov(Z,T)
+# unde Z = aX + bY si T = cX + dY
+a <- 2
+b <- 1
+c <- 1
+d <- 2
+fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 
-  fcov(X,Y,rep_comuna_rezolvata)
-  fpropcov(X,Y,rep_comuna_rezolvata,1,0,0,1)
+# e).
+# calcul probabilitate conditionata
 
 

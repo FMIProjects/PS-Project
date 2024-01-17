@@ -1,4 +1,3 @@
-
 fcov <-  function(X,Y,repCom){
 
   XY <- fvaop(X,Y,repCom,'*')
