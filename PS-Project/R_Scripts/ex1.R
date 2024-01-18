@@ -45,10 +45,9 @@ fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 fPcond(X,Y,rep_comuna_rezolvata)
 fPcond(Y,X,rep_comuna_rezolvata)
 
-# g)
-# operatii comune
+# f).
+# calcul probabilitati legate de perechea (X,Y)
 
-X
 #calcule doar pe repartitia unei variabile
 fPcomun(X=X,lowX=3,highX=3)
 fPcomun(X=X,lowX=-4,highX=5)
@@ -57,13 +56,49 @@ fPcomun(X=X,lowX=-4,highX=5)
 fPcomun(rep_comuna_rezolvata,X=X,Y=Y)
 fPcomun(rep_comuna_rezolvata,X=X,Y=Y,-4,4,-3,2)
 
+# g).
 
+# 1). Cov(5X+9,-3Y-2) . Fie Z = 5X+9 , T= -3Y-2
+
+Z <- funarop(funarop(X,5,"*",sort=FALSE),9,"+",sort=FALSE)
+
+T <- funarop(funarop(Y,-3,"*",sort=FALSE),2,"-",sort=FALSE) 
+
+repComZT <- rep_comuna_rezolvata
+repComZT[2:(n+1),1] <- Z[1,] 
+repComZT[2:(n+1),m+2] <- Z[2,]
+
+repComZT[1,2:(m+1)] <- T[1,]
+repComZT[n+2,2:(m+1)] <- T[2,]
+
+# sortare repCom
+indici_sortati_Y <- order(repComZT[1,2:(m+1)])
+repComZT[,2:(m+1)] <- repComZT[, indici_sortati_Y+1]
+
+indici_sortati_X <- order(repComZT[2:(n+1),1])
+repComZT[2:(n+1),] <- repComZT[indici_sortati_X+1,]
+
+fcov(Z,T,repComZT);
+
+# 2). P(0<X<0.8|Y>0.3) = P(0<X<0.8,Y>0.3) / P(Y>0.3)
+
+fPcomun(rep_comuna_rezolvata,X,Y,0,0.8,0.3) / fPcomun(rep_comuna_rezolvata,X=Y,lowX=0.3)
+
+# 3) P(X>0.2,Y<1.7)
+
+fPcomun(rep_comuna_rezolvata,X,Y,lowX = 0.2,highY = 1.7)
 
 # h).
 # verificare variabile independente si necorelate
 
-fvernecor(X,Y,rep_comuna_rezolvata)
+# 1). independente
+
 fverind(Y,X,rep_comuna_rezolvata)
+
+# 2). necorelate
+fvernecor(X,Y,rep_comuna_rezolvata)
+
+
 
 
 

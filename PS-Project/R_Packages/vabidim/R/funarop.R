@@ -1,4 +1,4 @@
-funarop <- function(X,nr,op)
+funarop <- function(X,nr,op,sort=TRUE)
 {
   if(op == "+")
   {
@@ -47,7 +47,7 @@ funarop <- function(X,nr,op)
     X <- merge_X
   }
 
-  if(length(X) != 2)
+  if(length(X) != 2 && sort==TRUE)
   {
     #sortare
     indici_sortati <- order(X[1, ])
