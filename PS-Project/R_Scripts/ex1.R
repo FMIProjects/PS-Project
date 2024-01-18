@@ -43,5 +43,5 @@ fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 # calcul probabilitate conditionata
 
 fPcond(X,Y,rep_comuna_rezolvata)
-fPcond(Y,X,t(rep_comuna_rezolvata))
+fPcond(Y,X,rep_comuna_rezolvata)
 

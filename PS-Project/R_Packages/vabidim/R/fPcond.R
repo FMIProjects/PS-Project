@@ -1,6 +1,16 @@
 # fPcond
 fPcond <- function(X,Y,repCom) {
 
+  #se va lucra pe cazul in care valorile lui X sunt situate pe prima coloana
+
+  n <- length(repCom[,1])-2
+  m <- length(repCom[1,])-2
+
+  # daca valorile lui X sunt pe prima linie atunci transpunem matricea
+  if(identical(X[1,] , repCom[1,2:(m+1)]) && identical(X[2,],repCom[n+2,2:(m+1)]))
+    repCom <- t(repCom)
+
+
   #se extrag marimile matricei
 
   n <- length(repCom[,1])-2
