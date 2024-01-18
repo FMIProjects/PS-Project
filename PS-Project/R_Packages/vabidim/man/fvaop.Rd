@@ -7,7 +7,7 @@
 
 \arguments{
   \item{X}{Functia de repartitie a v.a X.}
-  \item{Y}{Functia de repartitie a v.a X.}
+  \item{Y}{Functia de repartitie a v.a Y.}
   \item{repCom}{Repartitia comuna a v.a X si Y.}
   \item{op}{'+' , '-' , '*'}
 }

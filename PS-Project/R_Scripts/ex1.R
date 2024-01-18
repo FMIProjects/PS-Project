@@ -14,7 +14,7 @@ options(scipen = 999)
 # a).
 # generare tabel rep. comuna a v.a. X si Y incompleta
 
-n <- 3
+n <- 4
 m <- 3
 rep_comuna_incompleta <- frepcomgen(n,m)
 
@@ -42,4 +42,6 @@ fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 # e).
 # calcul probabilitate conditionata
 
+fPcond(X,Y,rep_comuna_rezolvata)
+fPcond(Y,X,t(rep_comuna_rezolvata))
 
