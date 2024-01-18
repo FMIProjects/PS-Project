@@ -49,5 +49,6 @@ fPcond(Y,X,rep_comuna_rezolvata)
 # verificare variabile independente si necorelate
 
 fvernecor(X,Y,rep_comuna_rezolvata)
+fverind(Y,X,rep_comuna_rezolvata)
 
 
