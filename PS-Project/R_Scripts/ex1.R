@@ -45,3 +45,9 @@ fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 fPcond(X,Y,rep_comuna_rezolvata)
 fPcond(Y,X,rep_comuna_rezolvata)
 
+# h).
+# verificare variabile independente si necorelate
+
+fvernecor(X,Y,rep_comuna_rezolvata)
+
+

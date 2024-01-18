@@ -1,5 +1,15 @@
 fvaop <- function(X,Y,repartitieComuna,op){
 
+  #se va lucra pe cazul in care valorile lui X sunt situate pe prima coloana
+
+  n <- length(repartitieComuna[,1])-2
+  m <- length(repartitieComuna[1,])-2
+
+  # daca valorile lui X sunt pe prima linie atunci transpunem matricea
+  if(identical(X[1,] , repartitieComuna[1,2:(m+1)]) && identical(X[2,],repartitieComuna[n+2,2:(m+1)]))
+    repartitieComuna <- t(repartitieComuna)
+
+
   # nx numarul de linii din repCom ny numarul de coloane din repCom
   nX <- length(X[1,])
   nY <- length(Y[1,])
