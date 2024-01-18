@@ -98,7 +98,41 @@ fverind(Y,X,rep_comuna_rezolvata)
 # 2). necorelate
 fvernecor(X,Y,rep_comuna_rezolvata)
 
+# i).maniera vizuala de reprezentare a
+# repartitiei comune pentru v.a. X, Y și Z.
 
+# devine 3d (un paralelipiped dreptunghic)
+# X -> axa OX ; y-> axa OY ; Z -> axa OZ
+
+# p -> dreapta opusa in planul xoy
+# q -> dreapta opusa in planul xoy
+# k -> dreapta opusa in planul zo si diagonala xoy
+
+# pi_ijk = P(X=xi,Y=yj,Z=zk)
+
+# install.packages("rgl")
+library(rgl)
+
+# generam 100 pi_ijk
+n <- 100
+X <- runif(n, min = -50, max = 50)
+Y <- runif(n, min = -50, max = 50)
+Z <- runif(n, min = -50, max = 50)
+
+
+# 3D plot
+plot3d(X, Y, Z, col = "red", size = 0.4, type = "s", main = "Repartitie Comuna XYZ",
+       xlab="", ylab="", zlab="",ann = FALSE, axes = FALSE)
+box3d()
+axes3d(edges = c("x--", "y--", "z--"))
+mtext3d("X", "x--", line = 2)
+mtext3d("Y", "y--", line = 2)
+mtext3d("Z", "z--", line = 2)
+
+mtext3d("p", "x+-", line = 2)
+mtext3d("q", "y+-", line = 2)
+mtext3d("k", "z++", line = 2)
+play3d(spin3d(axis = c(0, 0, 1)), duration = 10000)
 
 
 
