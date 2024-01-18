@@ -45,11 +45,25 @@ fpropcov(X,Y,rep_comuna_rezolvata,a,b,c,d)
 fPcond(X,Y,rep_comuna_rezolvata)
 fPcond(Y,X,rep_comuna_rezolvata)
 
+# g)
+# operatii comune
+
+X
+#calcule doar pe repartitia unei variabile
+fPcomun(X=X,lowX=3,highX=3)
+fPcomun(X=X,lowX=-4,highX=5)
+
+#calcule pe 2 variabile
+fPcomun(rep_comuna_rezolvata,X=X,Y=Y)
+fPcomun(rep_comuna_rezolvata,X=X,Y=Y,-4,4,-3,2)
+
+
+
 # h).
 # verificare variabile independente si necorelate
 
 fvernecor(X,Y,rep_comuna_rezolvata)
 fverind(Y,X,rep_comuna_rezolvata)
-X
-fPcomun(X=X,lowX = 4,highX = 4)
+
+
 
