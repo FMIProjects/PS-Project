@@ -14,8 +14,8 @@ options(scipen = 999)
 # a).
 # generare tabel rep. comuna a v.a. X si Y incompleta
 
-n <- 4
-m <- 3
+n <- 3
+m <- 4
 rep_comuna_incompleta <- frepcomgen(n,m)
 
 
@@ -50,5 +50,6 @@ fPcond(Y,X,rep_comuna_rezolvata)
 
 fvernecor(X,Y,rep_comuna_rezolvata)
 fverind(Y,X,rep_comuna_rezolvata)
-
+X
+fPcomun(X=X,lowX = 4,highX = 4)
 
