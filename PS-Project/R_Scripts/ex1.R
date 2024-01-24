@@ -62,10 +62,10 @@ fPcomun(rep_comuna_rezolvata,X=X,Y=Y,-4,4,-3,2)
 
 Z <- funarop(funarop(X,5,"*",sort=FALSE),9,"+",sort=FALSE)
 
-T <- funarop(funarop(Y,-3,"*",sort=FALSE),2,"-",sort=FALSE) 
+T <- funarop(funarop(Y,-3,"*",sort=FALSE),2,"-",sort=FALSE)
 
 repComZT <- rep_comuna_rezolvata
-repComZT[2:(n+1),1] <- Z[1,] 
+repComZT[2:(n+1),1] <- Z[1,]
 repComZT[2:(n+1),m+2] <- Z[2,]
 
 repComZT[1,2:(m+1)] <- T[1,]
@@ -133,6 +133,14 @@ mtext3d("p", "x+-", line = 2)
 mtext3d("q", "y+-", line = 2)
 mtext3d("k", "z++", line = 2)
 play3d(spin3d(axis = c(0, 0, 1)), duration = 10000)
+
+
+# Exercitiul 2
+
+
+
+
+
 
 
 
