@@ -1,4 +1,23 @@
-fbidimfuncpoz <- function(f,lowX=-10^8,highX=10^8,lowY=-10^8,highY=10^8,precision = 10^4){
+fbidimfuncpoz <- function(f,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5,precision = 10^4){
+
+  if(is.infinite(lowX)){
+    lowX = -10^5
+  }
+
+
+  if(is.infinite(lowY)){
+    lowy = -10^5
+  }
+
+
+  if(is.infinite(highX)){
+    highX = 10^5
+  }
+
+
+  if(is.infinite(highY)){
+    highY = 10^5
+  }
 
   # generam precision valori din intervalele date pentru x si y
   valori_x <- seq(from = lowX, to = highX , length.out = precision)
