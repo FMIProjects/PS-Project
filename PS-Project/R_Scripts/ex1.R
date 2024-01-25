@@ -137,7 +137,14 @@ play3d(spin3d(axis = c(0, 0, 1)), duration = 10000)
 
 # Exercitiul 2
 
+# install.packages("pracma")
+library(pracma)
 
+f <- function(x, y) {
+  return(x^2 + y^2 + 1)  # Exemplu de funcție bidimensională (x^2 + y^2 + 1)
+}
+
+fbidimfuncpoz(f)
 
 
 
