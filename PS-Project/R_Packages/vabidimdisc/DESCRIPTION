@@ -1,6 +1,6 @@
-Package: vabidim
+Package: vabidimdisc
 Type: Package
-Title: Functii Variabile Aleatoare Bidimensionale
+Title: Functii Variabile Aleatoare Bidimensionale Discrete
 Version: 0.1.0
 Author: Huma Stefan ; Gabroveanu Razvan
 Maintainer: The package maintainer <yourself@somewhere.net>

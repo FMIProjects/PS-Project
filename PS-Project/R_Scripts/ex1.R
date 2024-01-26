@@ -4,7 +4,7 @@
 # Exercitiul 1
 
 # library custom ce cuprinde toate functiile
-library(vabidim)
+library(vabidimdisc)
 
 # pentru ca valorile numerice sa nu fie afisate
 # de tipul e+...
