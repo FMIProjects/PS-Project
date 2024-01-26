@@ -11,3 +11,5 @@ fvariance <- function(X)
 
   return(varianta)
 }
+
+

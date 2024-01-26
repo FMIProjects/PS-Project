@@ -8,3 +8,5 @@ fexpectedvalue <- function(X)
 
   return(medie)
 }
+
+

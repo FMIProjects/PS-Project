@@ -33,8 +33,6 @@ fvaop <- function(X,Y,repartitieComuna,op){
     indexProbX <- which(valX==i)
 
     # concatenam noile valori la vectorul de valori in functie de operatie
-
-
     if(op == "+"){
       valXY <- c(valXY,(valY+i))
     }
