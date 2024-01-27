@@ -22,7 +22,9 @@ ui <- fluidPage(
       ),
 
       mainPanel(
-        textOutput("rezultat"),
+        textOutput("rezultat1"),
+        textOutput("rezultat2"),
+        textOutput("rezultat3"),
         plotOutput("plot")
       )
     )
@@ -33,24 +35,48 @@ server <- function(input, output)
 {
 
   observeEvent(input$run, {
+    output$rezultat1 <- renderText({paste("")})
+    output$rezultat2 <- renderText({paste("")})
     optiune <- input$action_dropdown
 
     # obtinem functia introdusa de la tastatura
     input_f <- parse(text = input$finput)
+    # obtinem borderele
+    lx <- as.numeric(input$lx)
+    ux <- as.numeric(input$ux)
+    ly <- as.numeric(input$ly)
+    uy <- as.numeric(input$uy)
 
     # definim functia bidimensionala
     f <- function(x, y) eval(input_f, list(x = x, y = y))
 
-    if (optiune == "Test Fubini") {
-      # Test Fubini
-
-      output$rezultat <- renderText({
-        paste("f(3, 7) =", f(3, 7))
-      })
-
-    } else if (optiune == "") {
-
+    # test limite
+    if (lx > ux || ly > uy)
+    {
+      output$rezultat1 <- renderText({paste("Limite introduse incorect!")})
     }
+    else
+    {
+     if (optiune == "Test Fubini")
+     {
+      # Test Fubini
+      if(ftestFubini(f,lx,ux,ly,uy))
+        {
+        output$rezultat1 <- renderText({paste("Test Fubini : DA")})
+
+        integrala_dubla <- integral2(f,lx,ux,ly,uy)
+        output$rezultat2 <- renderText({paste("Rezultat Integrala : ",integrala_dubla$Q)})
+        }
+      else
+        {
+        output$rezultat1 <- renderText({paste("Test Fubini : NU")})
+        }
+
+    } else if (optiune == "")
+      {
+
+      }
+   }
   })
 }
 
