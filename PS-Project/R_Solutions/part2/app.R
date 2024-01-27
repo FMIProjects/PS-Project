@@ -2,6 +2,7 @@ library(shiny)
 library(pracma)
 library(animate)
 library(vabidimcont)
+library(rgl)
 
 # partea de UI
 ui <- fluidPage(
@@ -11,13 +12,16 @@ ui <- fluidPage(
 
     sidebarLayout(
       sidebarPanel(
-        textInput("finput", "Functia f:", "2*x+10/y+x"),
+        textInput("finput", "Functia f:", "x^2 + y^2"),
+        radioButtons("dim", "Dimensiune:",
+                           choices = c("Unidimensionala", "Bidimensionala"),
+                           selected = "Bidimensionala"),
         textInput("lx", "Limita inferioara x:", 0),
         textInput("ux", "Limita superioara x:", 1),
         textInput("ly", "Limita inferioara y:", 0),
         textInput("uy", "Limita superioara y:", 1),
         selectInput("action_dropdown", "Optiuni:",
-                    choices = c("Test Fubini", "Alta")),
+                    choices = c("Test Fubini", "Interpretare Geometrica")),
         actionButton("run", "Run")
       ),
 
@@ -25,7 +29,8 @@ ui <- fluidPage(
         textOutput("rezultat1"),
         textOutput("rezultat2"),
         textOutput("rezultat3"),
-        plotOutput("plot")
+        rglwidgetOutput("plot1"),
+        plotOutput("plot2")
       )
     )
 )
@@ -37,6 +42,7 @@ server <- function(input, output)
   observeEvent(input$run, {
     output$rezultat1 <- renderText({paste("")})
     output$rezultat2 <- renderText({paste("")})
+    output$plot1 <- renderRglwidget({})
     optiune <- input$action_dropdown
 
     # obtinem functia introdusa de la tastatura
@@ -48,7 +54,10 @@ server <- function(input, output)
     uy <- as.numeric(input$uy)
 
     # definim functia bidimensionala
-    f <- function(x, y) eval(input_f, list(x = x, y = y))
+    if (input$dim == "Bidimensionala")
+      f <- function(x, y) eval(input_f, list(x = x, y = y))
+    else if (input$dim == "Unidimensionala")
+      f <- function(x) eval(input_f, list(x = x))
 
     # test limite
     if (lx > ux || ly > uy)
@@ -72,8 +81,17 @@ server <- function(input, output)
         output$rezultat1 <- renderText({paste("Test Fubini : NU")})
         }
 
-    } else if (optiune == "")
+    } else if (optiune == "Interpretare Geometrica")
       {
+      x <- seq(lx, ux, length = 30)
+      y <- seq(ly, uy, length = 30)
+      z <- outer(x,y,f)
+
+      output$plot1 <- renderRglwidget({
+        try(close3d())
+        persp3d(x,y,z,col="red")
+        rglwidget()
+      })
 
       }
    }
