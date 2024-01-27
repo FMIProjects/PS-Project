@@ -1,4 +1,4 @@
-fbidimfuncpoz <- function(f,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5,precision = 10^4){
+fbidimfuncpoz <- function(f,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5,precision = 10^3){
 
   if(is.infinite(lowX)){
     lowX <- -10^5
@@ -21,10 +21,12 @@ fbidimfuncpoz <- function(f,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5,precisio
   valori_y <- seq(from = lowY, to = highY , length.out = precision)
 
   # Facem o matrice cu toate valorile functiei f apelate pe toate perechile doua cate doua generate pt x si y
-  valori_f <- outer(x_values, y_values, Vectorize(f))
+  valori_f <- outer(valori_x, valori_y, Vectorize(f))
 
 
   # returnam true daca toate sunt pozitive sau false altfel
+
+
 
   return(all(valori_f>=0))
 }

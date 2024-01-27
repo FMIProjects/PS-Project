@@ -21,3 +21,5 @@ fvabidimdens <- function(f,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5){
   return(valoare_integrala == 1 && fbidimfuncpoz(f,lowX,highX,lowY,highY))
 
 }
+
+

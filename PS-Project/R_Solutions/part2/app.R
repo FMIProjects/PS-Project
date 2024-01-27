@@ -100,3 +100,4 @@ server <- function(input, output)
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
+
