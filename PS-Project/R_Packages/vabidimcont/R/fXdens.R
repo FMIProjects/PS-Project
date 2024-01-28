@@ -6,7 +6,6 @@ fXdens <- function(fXY,x,lowY=-10^5,highY=10^5){
 
   return(valIntegrala)
 
-
 }
 
 

@@ -20,8 +20,15 @@ ui <- fluidPage(
         textInput("ux", "Limita superioara x:", 1),
         textInput("ly", "Limita inferioara y:", 0),
         textInput("uy", "Limita superioara y:", 2),
+        textInput("valx", "Valoare pentru x:", 0),
+        textInput("valy", "Valoare pentru y:", 0),
         selectInput("action_dropdown", "Optiuni:",
-                    choices = c("Test Fubini", "Interpretare Geometrica","Testeaza Densitate")),
+                    choices = c("Test Fubini",
+                                "Interpretare Geometrica",
+                                "Testeaza Densitate",
+                                "Calculeaza densitate marginala X",
+                                "Calculeaza densitate marginala Y")),
+
         actionButton("run", "Run")
       ),
 
@@ -52,6 +59,12 @@ server <- function(input, output)
     ux <- as.numeric(input$ux)
     ly <- as.numeric(input$ly)
     uy <- as.numeric(input$uy)
+
+    #obtinem valorile pentru x si y
+
+    valx <- as.numeric(input$valx)
+    valy <- as.numeric(input$valy)
+
 
     # definim functia bidimensionala
     if (input$dim == "Bidimensionala")
@@ -107,6 +120,43 @@ server <- function(input, output)
 
       }
 
+      else if(optiune == "Calculeaza densitate marginala X"){
+
+
+        if(valx> ux || valx< lx){
+
+          output$rezultat1 <- renderText({paste("Rezultat densitate X : 0 (valoarea lui x nu apartine intervalului dat)")})
+
+        }else{
+          marginalaX <- fXdens(f,valx,ly,uy)
+
+
+          output$rezultat1 <- renderText({paste("Rezultat densitate X : ",marginalaX)})
+        }
+
+
+
+
+      }
+
+      else if(optiune == "Calculeaza densitate marginala Y"){
+
+
+        if(valy> uy || valy< ly){
+
+          output$rezultat1 <- renderText({paste("Rezultat densitate Y : 0 (valoarea lui y nu apartine intervalului dat)")})
+
+        }else{
+
+          marginalaY <- fYdens(f,valy,lx,ux)
+
+          output$rezultat1 <- renderText({paste("Rezultat densitate Y : ", marginalaY)})
+
+        }
+
+
+      }
+
 
    }
   })
@@ -114,5 +164,7 @@ server <- function(input, output)
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
+
+
 
 
