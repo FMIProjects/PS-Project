@@ -11,7 +11,7 @@
 \arguments{
 
   \item{f}{Functia bidi}
-  \item{lowX}{Lowwer bound-ul pentru parametrul x}
+  \item{lowX}{Lower bound-ul pentru parametrul x}
   \item{highX}{Upper bound-ul pentru parametrul x}
   \item{lowY}{Lower bound-ul pentru parametrul y}
   \item{highY}{Upper bound-ul pentru parametrul y}
