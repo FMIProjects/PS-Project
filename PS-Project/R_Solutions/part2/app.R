@@ -12,16 +12,16 @@ ui <- fluidPage(
 
     sidebarLayout(
       sidebarPanel(
-        textInput("finput", "Functia f:", "x^2 + y^2"),
+        textInput("finput", "Functia f:", "1/5*(x+y+1)"),
         radioButtons("dim", "Dimensiune:",
                            choices = c("Unidimensionala", "Bidimensionala"),
                            selected = "Bidimensionala"),
         textInput("lx", "Limita inferioara x:", 0),
         textInput("ux", "Limita superioara x:", 1),
         textInput("ly", "Limita inferioara y:", 0),
-        textInput("uy", "Limita superioara y:", 1),
+        textInput("uy", "Limita superioara y:", 2),
         selectInput("action_dropdown", "Optiuni:",
-                    choices = c("Test Fubini", "Interpretare Geometrica")),
+                    choices = c("Test Fubini", "Interpretare Geometrica","Testeaza Densitate")),
         actionButton("run", "Run")
       ),
 
@@ -93,11 +93,28 @@ server <- function(input, output)
         rglwidget()
       })
 
+    }
+
+      else if(optiune == "Testeaza Densitate"){
+
+        if(fvabidimdens(f,lx,ux,ly,uy)){
+          output$rezultat1 <- renderText({paste("Test densitate : DA")})
+        }
+
+        else{
+          output$rezultat1 <- renderText({paste("Test densitate : NU")})
+        }
+
       }
+
+
    }
   })
 }
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
+
+
+
 
