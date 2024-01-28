@@ -11,33 +11,45 @@ ui <- fluidPage(
     titlePanel(h3("V.a. bidimensionale continue",align= "center")),
 
     sidebarLayout(
-      sidebarPanel(
-        textInput("finput", "Functia f:", "1/5*(x+y+1)"),
-        radioButtons("dim", "Dimensiune:",
-                           choices = c("Unidimensionala", "Bidimensionala"),
-                           selected = "Bidimensionala"),
-        textInput("lx", "Limita inferioara x:", 0),
-        textInput("ux", "Limita superioara x:", 1),
-        textInput("ly", "Limita inferioara y:", 0),
-        textInput("uy", "Limita superioara y:", 2),
-        textInput("valx", "Valoare pentru x:", 0),
-        textInput("valy", "Valoare pentru y:", 0),
+      sidebarPanel(width=6,
+        tabsetPanel(type = "tabs",
+                    tabPanel("1",
+                             textInput("finput", "Functia f:", "1/5*(x+y+1)"),
+                             radioButtons("dim", "Dimensiune:",
+                                          choices = c("Unidimensionala", "Bidimensionala"),
+                                          selected = "Bidimensionala"),
+                             fluidRow(
+                               column(6,textInput("lx", "Limita inferioara x:", 0)),
+                               column(6,textInput("ux", "Limita superioara x:", 1))
+                             ),
+                             fluidRow(
+                               column(6,textInput("ly", "Limita inferioara y:", 0)),
+                               column(6,textInput("uy", "Limita superioara y:", 2))
+                             )),
+                    tabPanel("2",fluidRow(
+                      column(6,textInput("valx", "Valoare pentru x:", 0)),
+                      column(6,textInput("valy", "Valoare pentru y:", 0))
+                    ))
+        ),
         selectInput("action_dropdown", "Optiuni:",
                     choices = c("Test Fubini",
                                 "Interpretare Geometrica",
-                                "Testeaza Densitate",
-                                "Calculeaza densitate marginala X",
-                                "Calculeaza densitate marginala Y")),
-
-        actionButton("run", "Run")
+                                "Densitate marginala X",
+                                "Densitate marginala Y"
+                    )),
+        actionButton("run", "Run"),
       ),
 
-      mainPanel(
-        textOutput("rezultat1"),
-        textOutput("rezultat2"),
-        textOutput("rezultat3"),
+      mainPanel(width=6,
+        tabsetPanel(type = "tabs",
+        tabPanel("Text",
+        span(textOutput("rezultat1"),style="font-size:30px;text-align:center;margin:10px"),
+        span(textOutput("rezultat2"),style="font-size:30px;text-align:center;margin:10px"),
+        span(textOutput("rezultat3"),style="font-size:30px;text-align:center;margin:10px")),
+        tabPanel("Plot",
         rglwidgetOutput("plot1"),
-        plotOutput("plot2")
+        plotOutput("plot2"))
+        )
       )
     )
 )
@@ -108,7 +120,7 @@ server <- function(input, output)
 
     }
 
-      else if(optiune == "Testeaza Densitate"){
+      else if(optiune == "Test Densitate"){
 
         if(fvabidimdens(f,lx,ux,ly,uy)){
           output$rezultat1 <- renderText({paste("Test densitate : DA")})
@@ -120,7 +132,7 @@ server <- function(input, output)
 
       }
 
-      else if(optiune == "Calculeaza densitate marginala X"){
+      else if(optiune == "Densitate marginala X"){
 
 
         if(valx> ux || valx< lx){
@@ -134,12 +146,9 @@ server <- function(input, output)
           output$rezultat1 <- renderText({paste("Rezultat densitate X : ",marginalaX)})
         }
 
-
-
-
       }
 
-      else if(optiune == "Calculeaza densitate marginala Y"){
+      else if(optiune == "Densitate marginala Y"){
 
 
         if(valy> uy || valy< ly){
@@ -154,9 +163,7 @@ server <- function(input, output)
 
         }
 
-
       }
-
 
    }
   })
