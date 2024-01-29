@@ -41,7 +41,8 @@ ui <- fluidPage(
                                 "Densitate marginala Y",
                                 "Densitate conditionata X|Y=y",
                                 "Densitate conditionata Y|X=x",
-                                "Calcul medie"
+                                "Calcul medie",
+                                "Calcul varianta"
                     )),
         actionButton("run", "Run"),
       ),
@@ -215,12 +216,21 @@ server <- function(input, output)
 
       }
 
+      else if(optiune == "Calcul varianta"){
+
+        valoareVarianta <- fvabdimvariance(f,fmedie,lx,ux,ly,uy)
+
+        output$rezultat1 <- renderText({paste("Valoarea variantei: ",valoareVarianta)})
+
+      }
+
    }
   })
 }
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
+
 
 
 

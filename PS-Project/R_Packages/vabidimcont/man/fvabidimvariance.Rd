@@ -1,12 +1,12 @@
-\name{fvabidimexpectedvalue}
-\alias{fvabidimexpectedvalue}
-\title{fvabidimexpectedvalue}
+\name{fvabdimvariance}
+\alias{fvabdimvariance}
+\title{fvabdimvariance}
 \description{
 
- Calculeaza media unei functii pe doua v.a. continue pe baza densitatii lor comune.
+ Calculeaza varianta unei functii pe doua v.a. continue pe baza densitatii lor comune.
 
 }
-\usage{fvabidimexpectedvalue <- function(fdens,fmedie,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5)}
+\usage{fvabdimvariance <- function(fdens,fmedie,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5)}
 
 \arguments{
 
@@ -21,7 +21,7 @@
 
 \details{
 
-  Calculeaza integrala dubla de fmedie(x,y) * fdens(x,y) cu captele corespunzatoare
+  Se calculeaza E[fmedie(X,Y)^2] si apoi E[fmedie(X,Y)]^2.
 
 }
-\value{Valoarea mediei calculate.}
+\value{Valoarea variantei calculate.}
