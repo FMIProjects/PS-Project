@@ -52,7 +52,8 @@ ui <- fluidPage(
                                 "Calcul varianta",
                                 "Moment centrat de ordin k",
                                 "Moment initial de ordin k",
-                                "Covarianta"
+                                "Covarianta",
+                                "Coeficient de corelatie"
                     )),
         actionButton("run", "Run"),
       ),
@@ -264,6 +265,15 @@ server <- function(input, output)
         covarianta <- fcovvabidim(f,vaCov1,vaCov2,lx,ux,ly,uy)
 
         output$rezultat1 <- renderText({paste("Valoarea covariantei: ",covarianta)})
+
+      }
+
+      else if(optiune == "Coeficient de corelatie"){
+
+        coeficient <- fcoeficientvabidim(f,vaCov1,vaCov2,lx,ux,ly,uy)
+
+        output$rezultat1 <- renderText({paste("Valoarea coeficientului de corelatie: ",coeficient)})
+
 
       }
 

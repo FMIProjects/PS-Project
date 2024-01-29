@@ -3,7 +3,7 @@
 \title{fcovvabidim}
 \description{
 
- Calculeaza momentul centrat/initial de ordin k a unei variabile aleatoare cu ajutorul densitatii comune.
+ Calculeaza covarianta a doua v.a. continue.
 
 }
 \usage{function(fdens,fmedie,lowX=-10^5,highX=10^5,lowY=-10^5,highY=10^5)}
@@ -26,4 +26,4 @@
   Calculeaza media lui fx*fy media lui fx si media lui fy si aplica formula covariantei.
 
 }
-\value{Valoarea covariantei }
+\value{Valoarea covariantei. }
