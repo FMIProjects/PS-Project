@@ -34,6 +34,11 @@ ui <- fluidPage(
                       textInput("fmedie", "Calcul medie:", "x+y"),
                       column(6,textInput("ordinMoment", "Ordinul momentului: ", 1))
 
+                    )),
+
+                    tabPanel("4",fluidRow(
+                      textInput("vaCov1", "V.a. 1 covarianta:", "x"),
+                      textInput("vaCov2", "V.a. 2 covarianta:", "y"),
                     ))
         ),
         selectInput("action_dropdown", "Optiuni:",
@@ -46,7 +51,8 @@ ui <- fluidPage(
                                 "Calcul medie",
                                 "Calcul varianta",
                                 "Moment centrat de ordin k",
-                                "Moment initial de ordin k"
+                                "Moment initial de ordin k",
+                                "Covarianta"
                     )),
         actionButton("run", "Run"),
       ),
@@ -87,15 +93,15 @@ server <- function(input, output)
     ly <- as.numeric(input$ly)
     uy <- as.numeric(input$uy)
 
-    #obtinem valorile pentru x si y si ordinul momentului
+    #obtinem valorile pentru x si y si ordinul momentului si variabilele pentru covarianta
 
     valx <- as.numeric(input$valx)
     valy <- as.numeric(input$valy)
 
-
-
     ordinMoment <- as.numeric(input$ordinMoment)
 
+    input_vaCov1 <- parse(text = input$vaCov1)
+    input_vaCov2 <- parse(text = input$vaCov2)
 
 
 
@@ -103,6 +109,9 @@ server <- function(input, output)
     if (input$dim == "Bidimensionala"){
       f <- function(x, y) eval(input_f, list(x = x, y = y))
       fmedie <-function(x, y) eval(input_fmedie, list(x = x, y = y))
+
+      vaCov1 <- function(x, y) eval(input_vaCov1, list(x = x, y = y))
+      vaCov2 <- function(x, y) eval(input_vaCov2, list(x = x, y = y))
     }
 
     else if (input$dim == "Unidimensionala")
@@ -247,6 +256,14 @@ server <- function(input, output)
         valoareMoment <- fmomentdeordink(f,fmedie,lx,ux,ly,uy,ordinMoment,TRUE)
 
         output$rezultat1 <- renderText({paste("Valoarea momentului: ",valoareMoment)})
+
+      }
+
+      else if(optiune == "Covarianta"){
+
+        covarianta <- fcovvabidim(f,vaCov1,vaCov2,lx,ux,ly,uy)
+
+        output$rezultat1 <- renderText({paste("Valoarea covariantei: ",covarianta)})
 
       }
 
