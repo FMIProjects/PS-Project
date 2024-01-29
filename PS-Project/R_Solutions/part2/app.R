@@ -35,7 +35,9 @@ ui <- fluidPage(
                     choices = c("Test Fubini",
                                 "Interpretare Geometrica",
                                 "Densitate marginala X",
-                                "Densitate marginala Y"
+                                "Densitate marginala Y",
+                                "Densitate conditionata X|Y=y",
+                                "Densitate conditionata Y|X=x"
                     )),
         actionButton("run", "Run"),
       ),
@@ -134,7 +136,6 @@ server <- function(input, output)
 
       else if(optiune == "Densitate marginala X"){
 
-
         if(valx> ux || valx< lx){
 
           output$rezultat1 <- renderText({paste("Rezultat densitate X : 0 (valoarea lui x nu apartine intervalului dat)")})
@@ -150,7 +151,6 @@ server <- function(input, output)
 
       else if(optiune == "Densitate marginala Y"){
 
-
         if(valy> uy || valy< ly){
 
           output$rezultat1 <- renderText({paste("Rezultat densitate Y : 0 (valoarea lui y nu apartine intervalului dat)")})
@@ -164,6 +164,36 @@ server <- function(input, output)
         }
 
       }
+     else if(optiune == "Densitate conditionata X|Y=y"){
+
+       if(valy> uy || valy< ly){
+
+         output$rezultat1 <- renderText({paste("Rezultat densitate conditionata X|Y=y : 0 (valoarea lui y nu apartine intervalului dat)")})
+
+       }else if((valx> ux || valx< lx)){
+         output$rezultat1 <- renderText({paste("Rezultat densitate conditionata X|Y=y : 0 (valoarea lui x nu apartine intervalului dat)")})
+       }
+       else
+       {
+         marginalaY <- fYdens(f,valy,lx,ux)
+         valoareCond <- fcond(f,marginalaY,valx,valy)
+         output$rezultat1 <- renderText({paste("Rezultat densitate conditionata X|Y=y : ",valoareCond)})
+       }
+     }
+    else if(optiune == "Densitate conditionata Y|X=x"){
+      if(valy> uy || valy< ly){
+        output$rezultat1 <- renderText({paste("Rezultat densitate conditionata Y|X=x : 0 (valoarea lui y nu apartine intervalului dat)")})
+
+      }else if((valx> ux || valx< lx)){
+        output$rezultat1 <- renderText({paste("Rezultat densitate conditionata Y|X=x : 0 (valoarea lui x nu apartine intervalului dat)")})
+      }
+      else
+      {
+        marginalaX <- fXdens(f,valx,ly,uy)
+        valoareCond <- fcond(f,marginalaX,valx,valy)
+        output$rezultat1 <- renderText({paste("Rezultat densitate conditionata Y|X=x : ",valoareCond)})
+      }
+    }
 
    }
   })
