@@ -32,6 +32,8 @@ ui <- fluidPage(
                     )),
                     tabPanel("3",fluidRow(
                       textInput("fmedie", "Calcul medie:", "x+y"),
+                      column(6,textInput("ordinMoment", "Ordinul momentului: ", 1))
+
                     ))
         ),
         selectInput("action_dropdown", "Optiuni:",
@@ -42,7 +44,9 @@ ui <- fluidPage(
                                 "Densitate conditionata X|Y=y",
                                 "Densitate conditionata Y|X=x",
                                 "Calcul medie",
-                                "Calcul varianta"
+                                "Calcul varianta",
+                                "Moment centrat de ordin k",
+                                "Moment initial de ordin k"
                     )),
         actionButton("run", "Run"),
       ),
@@ -83,10 +87,16 @@ server <- function(input, output)
     ly <- as.numeric(input$ly)
     uy <- as.numeric(input$uy)
 
-    #obtinem valorile pentru x si y
+    #obtinem valorile pentru x si y si ordinul momentului
 
     valx <- as.numeric(input$valx)
     valy <- as.numeric(input$valy)
+
+
+
+    ordinMoment <- as.numeric(input$ordinMoment)
+
+
 
 
     # definim functia bidimensionala
@@ -224,12 +234,29 @@ server <- function(input, output)
 
       }
 
+      else if(optiune == "Moment centrat de ordin k"){
+
+        valoareMoment <- fmomentdeordink(f,fmedie,lx,ux,ly,uy,ordinMoment)
+
+        output$rezultat1 <- renderText({paste("Valoarea momentului: ",valoareMoment)})
+
+      }
+
+      else if(optiune == "Moment initial de ordin k"){
+
+        valoareMoment <- fmomentdeordink(f,fmedie,lx,ux,ly,uy,ordinMoment,TRUE)
+
+        output$rezultat1 <- renderText({paste("Valoarea momentului: ",valoareMoment)})
+
+      }
+
    }
   })
 }
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
+
 
 
 
