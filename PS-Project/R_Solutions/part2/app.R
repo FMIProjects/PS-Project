@@ -29,6 +29,9 @@ ui <- fluidPage(
                     tabPanel("2",fluidRow(
                       column(6,textInput("valx", "Valoare pentru x:", 0)),
                       column(6,textInput("valy", "Valoare pentru y:", 0))
+                    )),
+                    tabPanel("3",fluidRow(
+                      textInput("fmedie", "Calcul medie:", "x+y"),
                     ))
         ),
         selectInput("action_dropdown", "Optiuni:",
@@ -37,7 +40,8 @@ ui <- fluidPage(
                                 "Densitate marginala X",
                                 "Densitate marginala Y",
                                 "Densitate conditionata X|Y=y",
-                                "Densitate conditionata Y|X=x"
+                                "Densitate conditionata Y|X=x",
+                                "Calcul medie"
                     )),
         actionButton("run", "Run"),
       ),
@@ -66,8 +70,12 @@ server <- function(input, output)
     output$plot1 <- renderRglwidget({})
     optiune <- input$action_dropdown
 
-    # obtinem functia introdusa de la tastatura
+    # obtinem functia introdusa de la tastatura pentru densitate
     input_f <- parse(text = input$finput)
+
+    #obtinem functia intodusa de la tastatura pentru medie
+    input_fmedie <- parse(text = input$fmedie)
+
     # obtinem borderele
     lx <- as.numeric(input$lx)
     ux <- as.numeric(input$ux)
@@ -81,8 +89,11 @@ server <- function(input, output)
 
 
     # definim functia bidimensionala
-    if (input$dim == "Bidimensionala")
+    if (input$dim == "Bidimensionala"){
       f <- function(x, y) eval(input_f, list(x = x, y = y))
+      fmedie <-function(x, y) eval(input_fmedie, list(x = x, y = y))
+    }
+
     else if (input$dim == "Unidimensionala")
       f <- function(x) eval(input_f, list(x = x))
 
@@ -194,6 +205,15 @@ server <- function(input, output)
         output$rezultat1 <- renderText({paste("Rezultat densitate conditionata Y|X=x : ",valoareCond)})
       }
     }
+
+      else if(optiune =="Calcul medie"){
+
+
+          valoareMedie <- fvabidimexpectedvalue(f,fmedie,lx,ux,ly,uy)
+          output$rezultat1 <- renderText({paste("Valoarea mediei: ",valoareMedie)})
+
+
+      }
 
    }
   })

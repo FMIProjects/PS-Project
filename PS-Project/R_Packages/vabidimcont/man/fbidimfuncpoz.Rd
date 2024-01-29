@@ -10,7 +10,7 @@
 
 \arguments{
 
-  \item{f}{Functia bidi}
+  \item{f}{Functia bidimensionala}
   \item{lowX}{Lower bound-ul pentru parametrul x}
   \item{highX}{Upper bound-ul pentru parametrul x}
   \item{lowY}{Lower bound-ul pentru parametrul y}
