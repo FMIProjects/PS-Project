@@ -55,7 +55,8 @@ ui <- fluidPage(
                                 "Moment centrat de ordin k",
                                 "Moment initial de ordin k",
                                 "Covarianta",
-                                "Coeficient de corelatie"
+                                "Coeficient de corelatie",
+                                "Probabilitate"
                     )),
         actionButton("run", "Run"),
       ),
@@ -331,6 +332,13 @@ server <- function(input, output)
           output$plot2 <- renderPlot(plot(x,integral_values,type="l"))
 
         }
+      }
+
+      else if(optiune=="Probabilitate"){
+
+        valoareProbabilitate <- fPvabidimcont(f,lx,ux,ly,uy)
+        output$rezultat1 <- renderText({paste("Valoarea probabilitatii: ",valoareProbabilitate)})
+
       }
    }
   })
