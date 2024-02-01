@@ -31,7 +31,7 @@ ui <- fluidPage(
                       column(6,textInput("valy", "Valoare pentru y:", 0))
                     )),
                     tabPanel("3",fluidRow(
-                      textInput("fmedie", "Calcul medie:", "x+y"),
+                      textInput("fmedie", "Functie:", "x+y"),
                       column(6,textInput("ordinMoment", "Ordinul momentului: ", 1))
 
                     )),
@@ -48,6 +48,8 @@ ui <- fluidPage(
                                 "Densitate marginala Y",
                                 "Densitate conditionata X|Y=y",
                                 "Densitate conditionata Y|X=x",
+                                "Densitate Reprezentare Grafica",
+                                "Functia de repartitie Reprezentare Grafica",
                                 "Calcul medie",
                                 "Calcul varianta",
                                 "Moment centrat de ordin k",
@@ -64,8 +66,9 @@ ui <- fluidPage(
         span(textOutput("rezultat1"),style="font-size:30px;text-align:center;margin:10px"),
         span(textOutput("rezultat2"),style="font-size:30px;text-align:center;margin:10px"),
         span(textOutput("rezultat3"),style="font-size:30px;text-align:center;margin:10px")),
-        tabPanel("Plot",
-        rglwidgetOutput("plot1"),
+        tabPanel("Plot1",
+        rglwidgetOutput("plot1")),
+        tabPanel("Plot2",
         plotOutput("plot2"))
         )
       )
@@ -276,16 +279,62 @@ server <- function(input, output)
 
 
       }
+      else if(optiune == "Densitate Reprezentare Grafica")
+      {
+        if(input$dim == "Bidimensionala")
+        {
+        x <- seq(lx, ux, length = 100)
+        y <- seq(ly, uy, length = 100)
+        z <- outer(x,y,f)
 
+        output$plot1 <- renderRglwidget({
+          try(close3d())
+          persp3d(x,y,z,col="red")
+          rglwidget()
+        })
+        }
+        else
+        {
+         x <- seq(lx, ux, length = 10^5)
+         output$plot2 <- renderPlot(plot(x,f(x),type="l"))
+        }
+      }
+      else if (optiune == "Functia de repartitie Reprezentare Grafica")
+      {
+        if(input$dim == "Bidimensionala")
+        {
+          x <- seq(lx+0.00001, ux-0.00001, length = 100)
+          y <- seq(ly+0.00001, uy-0.00001, length = 100)
+
+          x_matrix <- outer(x, numeric(length(y)), FUN = function(a, b) a)
+          y_matrix <- outer(numeric(length(x)), y, FUN = function(a, b) b)
+
+          integral_values <- mapply(function(upper_x,upper_y) {
+            integral2(f,lx,upper_x,ly,upper_y)$Q
+          },x,y)
+
+
+          output$plot1 <- renderRglwidget({
+            try(close3d())
+            persp3d(x_matrix,y_matrix,integral_values,col="red")
+            rglwidget()
+          })
+        }
+        else
+        {
+          x <- seq(lx, ux, length = 10^5)
+
+          integral_values <- sapply(x, function(upper_limit) {
+            integrate(f, lower = lx, upper = upper_limit)$value
+          })
+
+          output$plot2 <- renderPlot(plot(x,integral_values,type="l"))
+
+        }
+      }
    }
   })
 }
 
 # UI + server => ShinyApp
 shinyApp(ui = ui, server = server)
-
-
-
-
-
-
