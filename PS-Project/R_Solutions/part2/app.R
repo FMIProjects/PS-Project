@@ -56,7 +56,8 @@ ui <- fluidPage(
                                 "Moment initial de ordin k",
                                 "Covarianta",
                                 "Coeficient de corelatie",
-                                "Probabilitate"
+                                "Probabilitate",
+                                "Test Densitate"
                     )),
         actionButton("run", "Run"),
       ),
