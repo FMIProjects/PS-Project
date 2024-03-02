@@ -27,7 +27,15 @@ graph plotting of unidimensional/bidimensional continuous random variables.
 ### Continuous random variables and interface
 
 - [X] Parsing of a function given as input in the app.
-- [X] Verification if the Fubinn
+- [X] Option to check if the [Fubini's theorem](https://en.wikipedia.org/wiki/Fubini%27s_theorem) can be applied on the given function.
+- [X] Geometrical plotting of the function
+- [X] Option to check if the given function is a density function.
+- [X] Option to compute the conditioned probability in a fixed point of one of the 2 random variables.
+- [X] Option to compute the mean, variance and the moments for one continuous random variable.
+- [X] Option to compute probabilities of one or two one continuous random variables.
+- [X] Option to compute the covariance and the correlation coeficient of the 2 continuous random variables.
+- [X] Option to make these computations on a single continuous random variable. 
+
 
 
 # Usage
