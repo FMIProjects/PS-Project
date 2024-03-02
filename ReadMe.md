@@ -37,14 +37,18 @@ graph plotting of unidimensional/bidimensional continuous random variables.
 - [X] Option to make these computations on a single continuous random variable. 
 
 
-
-# Usage
-
-TBA
-
 # Gallery
 
-TBA
+## Mean computation
+
+![](ReadMe_resources/mean.png)
+
+## Plotting
+
+![](ReadMe_resources/Plot1.png)
+
+![](ReadMe_resources/Plot2.png)
+
 
 # Contributors
 - [Huma Stefan](https://github.com/Steven23X)
