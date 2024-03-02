@@ -1,4 +1,4 @@
-# Probabilistics and Statistics Project
+ # Probabilistics and Statistics Project
 
 ## **Table of contents:**
 - [Description](#description)
@@ -25,6 +25,10 @@ graph plotting of unidimensional/bidimensional continuous random variables.
 - [X] Function that computes a probability of 2 random variables based on their joint distribution. 
 
 ### Continuous random variables and interface
+
+- [X] Parsing of a function given as input in the app.
+- [X] Verification if the Fubinn
+
 
 # Usage
 
